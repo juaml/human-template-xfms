@@ -73,8 +73,8 @@ main() {
     assert_datalad_exists
     assert_antsRegistration_exists
 
-    IFS="-"; arr_src_path=($src_path); unset IFS;
-    IFS="-"; arr_target_path=($target_path); unset IFS;
+    IFS="-"; arr_src_path=(basename $(dirname $src_path)); unset IFS;
+    IFS="-"; arr_target_path=(basename $(dirname $target_path)); unset IFS;
     output_dir_prefix="${arr_src_path[1]}_to_${arr_target_path[1]}";
     
     # Create output directory if not found and change directory
