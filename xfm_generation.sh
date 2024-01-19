@@ -34,19 +34,19 @@ fi
 
 # Logging helper function
 logit() {
-  echo "$(date -u) $1"
+  echo "$(date -u) $1";
 }
 
 # Assert datalad exists
 assert_datalad_exists() {
   command -v datalad &> /dev/null || { logit "ERROR Datalad could not be found!"; exit 1; }
-  logit "INFO Datalad found, proceeding to get data..."
+  logit "INFO Datalad found, proceeding to get data...";
 }
 
 # Assert antsRegistration exists
 assert_antsRegistration_exists() {
   command -v antsRegistration &> /dev/null || { logit "ERROR antsRegistration could not be found!"; exit 1; }
-  logit "INFO antsRegistration found, proceeding..."
+  logit "INFO antsRegistration found, proceeding...";
 }
 
 main() {
@@ -80,7 +80,7 @@ main() {
     target_name=$(basename $(dirname $target_path));
     IFS="-"; arr_target_name=($target_name); unset IFS;
     output_dir_prefix="${arr_src_name[1]}_to_${arr_target_name[1]}";
-    logit "DEBUG Output directory prefix: ${output_dir_prefixd}"
+    logit "DEBUG Output directory prefix: ${output_dir_prefix}";
     
     # Create output directory if not found and change directory
     mkdir -p "xfms/${output_dir_prefix}";
@@ -117,9 +117,9 @@ main() {
         --write-composite-transform 1
 
     # Change to root
-    cd ../../
+    cd ../../;
     
-    logit "INFO Done. Data in ${PWD}/xfms"
+    logit "INFO Done. Data in ${PWD}/xfms";
 }
 
 main "$@"
