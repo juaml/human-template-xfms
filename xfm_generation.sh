@@ -108,7 +108,7 @@ main() {
         --shrink-factors 8x4x2x1 \
         --smoothing-sigmas 3x2x1x0vox \
         --transform Affine[ 0.1 ] \
-        --metric MI[ $fullsrc_path,$full_target_path,1,32,Regular,0.25 ] \
+        --metric MI[ $full_src_path,$full_target_path,1,32,Regular,0.25 ] \
         --convergence [ 1000x500x250x0,1e-6,10 ] \
         --shrink-factors 8x4x2x1 \
         --smoothing-sigmas 3x2x1x0vox \
