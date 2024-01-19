@@ -72,13 +72,15 @@ main() {
         esac
     done
 
-    assert_datalad_exists
-    assert_antsRegistration_exists
+    assert_datalad_exists;
+    assert_antsRegistration_exists;
 
-    IFS="-"; arr_src_path=(basename $(dirname $src_path)); unset IFS;
-    IFS="-"; arr_target_path=(basename $(dirname $target_path)); unset IFS;
-    output_dir_prefix="${arr_src_path[1]}_to_${arr_target_path[1]}";
-    logit "DEBUG Output directory prefix: ${output_dir_prefix}"
+    src_name=$(basename $(dirname $src_path));
+    IFS="-"; arr_src_name=($src_name); unset IFS;
+    target_name=$(basename $(dirname $target_path));
+    IFS="-"; arr_target_name=($target_name); unset IFS;
+    output_dir_prefix="${arr_src_name[1]}_to_${arr_target_name[1]}";
+    logit "DEBUG Output directory prefix: ${output_dir_prefixd}"
     
     # Create output directory if not found and change directory
     mkdir -p "xfms/${output_dir_prefix}";
