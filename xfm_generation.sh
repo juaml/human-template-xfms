@@ -81,8 +81,8 @@ main() {
     logit "DEBUG Output directory prefix: ${output_dir_prefix}"
     
     # Create output directory if not found and change directory
-    mkdir -p xfms/$output_dir_prefix;
-    cd ${PWD}/xfms/$output_dir_prefix;
+    mkdir -p "xfms/${output_dir_prefix}";
+    cd "${PWD}/xfms/${output_dir_prefix}";
     
     antsRegistration \
         --verbose 1 \
