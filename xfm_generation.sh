@@ -81,11 +81,17 @@ main() {
     IFS="-"; arr_target_name=($target_name); unset IFS;
     output_dir_prefix="${arr_src_name[1]}_to_${arr_target_name[1]}";
     logit "DEBUG Output directory prefix: ${output_dir_prefix}";
-    
+
+    # Resolve symlinks
+    full_src_path=$(realpath "$src_path");
+    logit "DEBUG Resolved source template path: ${full_src_path}";
+    full_target_path=$(realpath "$target_path");
+    logit "DEBUG Resolved target template_path: ${full_target_path}";
+
     # Create output directory if not found and change directory
     mkdir -p "xfms/${output_dir_prefix}";
     cd "${PWD}/xfms/${output_dir_prefix}";
-    
+
     antsRegistration \
         --verbose 1 \
         --dimensionality 3 \
@@ -95,22 +101,19 @@ main() {
         --interpolation LanczosWindowedSinc \
         --use-histogram-matching 0 \
         --winsorize-image-intensities [ 0.005,0.995 ] \
-        --initial-moving-transform [ $src_path,$target_path,1 ] \
-        # Rigid transformation
-        --transform "Rigid[ 0.1 ]" \
-        --metric "MI[ ${src_path},${target_path},1,32,Regular,0.25 ]" \
+        --initial-moving-transform [ $full_src_path,$full_target_path,1 ] \
+        --transform Rigid[ 0.1 ] \
+        --metric MI[ $full_src_path,$full_target_path,1,32,Regular,0.25 ] \
         --convergence [ 1000x500x250x0,1e-6,10 ] \
         --shrink-factors 8x4x2x1 \
         --smoothing-sigmas 3x2x1x0vox \
-        # Affine transformation
-        --transform "Affine[ 0.1 ]" \
-        --metric "MI[ ${src_path},${target_path},1,32,Regular,0.25 ]" \
+        --transform Affine[ 0.1 ] \
+        --metric MI[ $fullsrc_path,$full_target_path,1,32,Regular,0.25 ] \
         --convergence [ 1000x500x250x0,1e-6,10 ] \
         --shrink-factors 8x4x2x1 \
         --smoothing-sigmas 3x2x1x0vox \
-        # SyN transformation
-        --transform "SyN[ 0.1,3,0 ]" \
-        --metric "MI[ ${src_path},${target_path},1,32]" \
+        --transform SyN[ 0.1,3,0 ] \
+        --metric MI[ $full_src_path,$full_target_path,1,32] \
         --convergence [ 100x70x50x0,1e-6,10 ] \
         --shrink-factors 8x4x2x1 \
         --smoothing-sigmas 3x2x1x0vox \
@@ -118,7 +121,7 @@ main() {
 
     # Change to root
     cd ../../;
-    
+
     logit "INFO Done. Data in ${PWD}/xfms";
 }
 
