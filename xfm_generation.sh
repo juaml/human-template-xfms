@@ -55,9 +55,11 @@ main() {
         case $opt in
             f)
                 src_path=$OPTARG
+                logit "DEBUG Source template path: ${src_path}"
                 ;;
             t)
                 target_path=$OPTARG
+                logit "DEBUG Target template path: ${target_path}"
                 ;;
             \?)
                 logit "ERROR Invalid option: -$OPTARG"
@@ -76,6 +78,7 @@ main() {
     IFS="-"; arr_src_path=(basename $(dirname $src_path)); unset IFS;
     IFS="-"; arr_target_path=(basename $(dirname $target_path)); unset IFS;
     output_dir_prefix="${arr_src_path[1]}_to_${arr_target_path[1]}";
+    logit "DEBUG Output directory prefix: ${output_dir_prefix}"
     
     # Create output directory if not found and change directory
     mkdir -p xfms/$output_dir_prefix;
