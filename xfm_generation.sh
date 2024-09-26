@@ -98,7 +98,7 @@ main() {
         --float 0 \
         --collapse-output-transforms 1 \
         --output $output_dir_prefix \
-        --interpolation LanczosWindowedSinc \
+        --interpolation Linear \
         --use-histogram-matching 0 \
         --winsorize-image-intensities [ 0.005,0.995 ] \
         --initial-moving-transform [ $full_src_path,$full_target_path,1 ] \
