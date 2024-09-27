@@ -122,7 +122,7 @@ main() {
     # Change to root
     cd ../../;
 
-    logit "INFO Done. Data in ${PWD}/xfms";
+    logit "INFO Done. Data in ${PWD}/xfms/${output_dir_prefix}";
 }
 
 main "$@"
