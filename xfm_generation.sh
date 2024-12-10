@@ -101,19 +101,19 @@ main() {
         --interpolation Linear \
         --use-histogram-matching 0 \
         --winsorize-image-intensities [ 0.005,0.995 ] \
-        --initial-moving-transform [ $full_src_path,$full_target_path,1 ] \
-        --transform Rigid[ 0.1 ] \
-        --metric MI[ $full_src_path,$full_target_path,1,32,Regular,0.25 ] \
+        --initial-moving-transform [ $full_target_path,$full_src_path,1 ] \
+        --transform "Rigid[ 0.1 ]" \
+        --metric "MI[ $full_target_path,$full_src_path,1,32,Regular,0.25 ]" \
         --convergence [ 1000x500x250x0,1e-6,10 ] \
         --shrink-factors 8x4x2x1 \
         --smoothing-sigmas 3x2x1x0vox \
-        --transform Affine[ 0.1 ] \
-        --metric MI[ $full_src_path,$full_target_path,1,32,Regular,0.25 ] \
+        --transform "Affine[ 0.1 ]" \
+        --metric "MI[ $full_target_path,$full_src_path,1,32,Regular,0.25 ]" \
         --convergence [ 1000x500x250x0,1e-6,10 ] \
         --shrink-factors 8x4x2x1 \
         --smoothing-sigmas 3x2x1x0vox \
-        --transform SyN[ 0.1,3,0 ] \
-        --metric MI[ $full_src_path,$full_target_path,1,32] \
+        --transform "SyN[ 0.1,3,0 ]" \
+        --metric "MI[ $full_target_path,$full_src_path,1,32]" \
         --convergence [ 100x70x50x0,1e-6,10 ] \
         --shrink-factors 8x4x2x1 \
         --smoothing-sigmas 3x2x1x0vox \
