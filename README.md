@@ -1,3 +1,5 @@
+### Note: This repository is archived and no further interactions would be reciprocated. Please follow [here](https://gin.g-node.org/synchon/junifer-data) for further developments.
+
 # Human template space transforms
 
 This repository provides pairwise human template space transformation assets.
@@ -31,10 +33,4 @@ Make sure to get a pair of them. Here's an example:
 $ datalad get tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-01_T1w.nii.gz
 # Get MNI152NLin6Asym template
 $ datalad get tpl-MNI152NLin6Asym/tpl-MNI152NLin6Asym_res-01_T1w.nii.gz
-```
-
-## Usage
-
-```sh
-
 ```
